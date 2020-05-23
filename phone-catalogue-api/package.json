@@ -1,0 +1,11 @@
+{
+  "name": "phone-catalogue-api",
+  "version": "1.0.0",
+  "description": "phone catalogue",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elizabeth Lombardi",
+  "license": "ISC"
+}
