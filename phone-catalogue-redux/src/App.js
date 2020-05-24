@@ -1,23 +1,30 @@
 import React from 'react';
-import './App.css';
 import MainNav from './components/misc/MainNav';
 import MainFooter from './components/misc/MainFooter';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import PhoneList from './components/PhonesList';
+import {
+  BrowserRouter as Router,
+  Switch, Route, Redirect
+} from 'react-router-dom'
 
-const App = () => {
+
+const App = ({ store }) => {
+  console.log(store)
+
   return (
-    <div className="App">
-      <MainNav/>
+    <Router>
+      <div className="App">
+        <MainNav/>
 
-      <Switch>
-        <Route exact path="/phones" component={PhoneList}/>
-        <Redirect from='/' to='/phones' />
-      </Switch>
+        <Switch>
+          <Route exact path="/phones" component={PhoneList}/>
+          <Redirect from='/' to='/phones' />
+        </Switch>
 
-      <MainFooter/>
+        <MainFooter/>
 
-    </div>
+      </div>
+    </Router> 
   );
 }
 
