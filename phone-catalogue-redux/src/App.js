@@ -1,31 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MainNav from './components/misc/MainNav';
 import MainFooter from './components/misc/MainFooter';
 import PhoneList from './components/PhonesList';
-import {
-  BrowserRouter as Router,
-  Switch, Route, Redirect
-} from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 
+import { fetchData } from './redux/actions';
+import { getPhones, getPhonesPending, getPhonesError } from './redux/reducers';
+import { bindActionCreators } from 'redux';
+import Loading from './components/misc/Loading';
 
-const App = ({ store }) => {
-  console.log(store)
+class App extends Component {
+  
+  componentDidMount(){
+    const { fetchProducts } = this.props;
+    fetchProducts();
+  }
 
-  return (
-    <Router>
+  render(){
+    const { phones, error, pending } = this.props;
+    //console.log('PROPS ---------------------->', this.props)
+
+    if(pending) return <Loading />
+
+    return (
       <div className="App">
         <MainNav/>
-
+  
         <Switch>
-          <Route exact path="/phones" component={PhoneList}/>
+          <Route 
+            exact path="/phones" 
+            component={props => 
+              <PhoneList {...phones}/>
+            } />
           <Redirect from='/' to='/phones' />
         </Switch>
-
+  
         <MainFooter/>
-
       </div>
-    </Router> 
-  );
+    )
+  }
+  
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    pending: getPhonesPending(state),
+    data: getPhones(state),
+    error: getPhonesError(state)
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchProducts: fetchData
+}, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(App);
+
+//export default App;

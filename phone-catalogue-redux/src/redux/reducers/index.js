@@ -3,11 +3,10 @@ import {
   DATA_SUCCESS,
   DATA_ERROR
 } from '../actions';
-import { combineReducers } from 'redux';
 
 const initialState = {
   pending: false,
-  phones: [],
+  data: [],
   error: null
 }
 
@@ -31,8 +30,7 @@ export function phonesReducer(state = initialState, action) {
       return {
         ...state,
         pending:false,
-        error: action.payload.error,
-        phones: []
+        error: action.payload.error
       }
 
     default:
@@ -40,14 +38,10 @@ export function phonesReducer(state = initialState, action) {
   }
 }
 
-export const getPhones = state => state.phones;
+export const getPhones = state => state.data;
 export const getPhonesPending = state => state.pending;
 export const getPhonesError = state => state.error;
 
-const rootReducer = combineReducers({
-  phonesReducer
-})
-
-export default rootReducer
+export default phonesReducer
 
 

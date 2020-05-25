@@ -4,20 +4,20 @@ export const REQUEST_DATA = 'REQUEST_DATA';
 export const DATA_SUCCESS = 'DATA_SUCCESS';
 export const DATA_ERROR = 'FETCH_DATA_ERROR';
 
-function requestData() {
+const requestData = () => {
   return {
     type: 'REQUEST_DATA',
   }
 }
 
-function dataSuccess(data) {
+const dataSuccess = (data) => {
   return {
     type: 'DATA_SUCCESS',
     payload: { data }
   }
 }
 
-function fetchDataError(error) {
+const fetchDataError = (error) => {
   return {
     type: 'DATA_ERROR',
     payload: { error }
@@ -27,31 +27,14 @@ function fetchDataError(error) {
 export const fetchData = () => {
   return async dispatch => {
     dispatch(requestData())
-    try {
-      let phones = await PhonesCatalogueService.list()
-      dispatch(dataSuccess(phones.data))
-    }
-    catch(error){
-      dispatch(fetchDataError(error))
-    }
+    PhonesCatalogueService.list()
+    .then(response => {
+      dispatch(dataSuccess(response.data))
+    }).catch(error => dispatch(fetchDataError(error)))
   }
 }
 
 
-// export const fetchData = () => {
-//   return async dispatch => {
-//     dispatch(requestData());
-//     fetch(PhonesCatalogueService.list())
-//     .then(response => response.json())
-//     .then(response => {
-//       if(response.error) throw(response.error)
-
-//       dispatch(dataSuccess(response.phones))
-//     })
-
-//     .catch(error => dispatch(fetchDataError(error)))
-//   }
-// }
 
 
 
