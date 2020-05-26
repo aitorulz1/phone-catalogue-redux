@@ -10,6 +10,9 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import 'jquery'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

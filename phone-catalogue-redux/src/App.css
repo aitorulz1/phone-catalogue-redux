@@ -5,3 +5,24 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
 }
+img { max-width: 100%;}
+
+.container-fluid{
+  max-width: 1700px;
+}
+
+/*cards*/
+.card:hover {
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .2s ease-in-out;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+/*cards modal*/
+.modal.phoneDetail_modal {
+  position: absolute;
+  left: 50vh;
+}
+
+/*Queries -------------------*/
