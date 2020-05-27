@@ -1,14 +1,14 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, getByTestId } from '@testing-library/react';
 import App from './App';
+import MainNav from './components/misc/MainNav';
 
-afterEach(cleanup) //avoid memory leaks
+//afterEach(cleanup) //avoid memory leaks
+
 
 describe('<App />', () => {
-  describe('render()', () => {
-    test('renders the component', () => {
-      expect(true).toBeTruthy();
-    });
+  test('loading', () => {
+    //expect(getByTestId('loading')).toBeTruthy()
   });
 });
 

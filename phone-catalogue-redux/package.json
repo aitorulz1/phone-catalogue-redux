@@ -43,6 +43,8 @@
   "devDependencies": {
     "@testing-library/dom": "^7.5.8",
     "@testing-library/react": "^9.5.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "redux-mock-store": "^1.5.4"
   }
 }
