@@ -24,13 +24,13 @@ const fetchDataError = (error) => {
   }
 }
 
-export const fetchData = () => {
-  return async dispatch => {
+export const fetchData = () => async (dispatch) => {
+  try {
     dispatch(requestData())
-    PhonesCatalogueService.list()
-    .then(response => {
-      dispatch(dataSuccess(response.data))
-    }).catch(error => dispatch(fetchDataError(error)))
+    const response = await PhonesCatalogueService.list()
+    dispatch(dataSuccess(response.data))
+  } catch (error) {
+    dispatch(fetchDataError(error))
   }
 }
 

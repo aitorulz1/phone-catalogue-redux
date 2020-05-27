@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import MainNav from './components/misc/MainNav';
 import MainFooter from './components/misc/MainFooter';
 import PhoneList from './components/PhonesList';
-import { Switch, Route, Redirect, Link } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { fetchData } from './redux/actions';
-import { getPhones, getPhonesPending, getPhonesError } from './redux/reducers';
-import { bindActionCreators } from 'redux';
 import Loading from './components/misc/Loading';
 
 class App extends Component {
@@ -18,7 +16,7 @@ class App extends Component {
   }
 
   render(){
-    const { phones, error, pending } = this.props;
+    const { error, pending } = this.props;
 
     if(pending) return <Loading />
 
@@ -36,9 +34,7 @@ class App extends Component {
         <MainNav/>
 
         <Switch>
-          <Route 
-            exact path="/phones" 
-            render={() => <PhoneList {...phones} />}/>
+          <Route exact path="/phones" component={PhoneList}/>
           <Redirect from='/' to='/phones' />
         </Switch>
   
@@ -51,15 +47,15 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    pending: getPhonesPending(state),
-    data: getPhones(state),
-    error: getPhonesError(state)
+    pending: state.pending,
+    data:  state.data,
+    error: state.error 
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = {
   fetchProducts: fetchData
-}, dispatch)
+}
 
 export default connect(
   mapStateToProps,

@@ -38,10 +38,6 @@ export function phonesReducer(state = initialState, action) {
   }
 }
 
-export const getPhones = state => state.data;
-export const getPhonesPending = state => state.pending;
-export const getPhonesError = state => state.error;
-
 export default phonesReducer
 
 

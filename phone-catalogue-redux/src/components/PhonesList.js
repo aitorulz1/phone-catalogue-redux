@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from './UI/Card';
-import { getPhones, getPhonesPending, getPhonesError } from '../redux/reducers';
 import { connect } from 'react-redux';
 
 const PhoneList = (props) => {
@@ -20,16 +19,14 @@ const PhoneList = (props) => {
         </div>
       )
       }
-
-
     </div>
 )}
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    pending: getPhonesPending(state),
-    data: getPhones(state),
-    error: getPhonesError(state)
+    pending: state.pending,
+    data:  state.data,
+    error: state.error 
   }
 }
 

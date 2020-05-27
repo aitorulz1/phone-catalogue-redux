@@ -12,7 +12,7 @@ const Card = ({
   processor,
   ram  }) => {
 
-    const nameReeplaceCharacters = name.replace(/[\. ,:-]+/g, "-");
+    const nameReeplaceCharacters = name.replace(/[. ,:-]+/g, "-");
 
     return (
       <>
