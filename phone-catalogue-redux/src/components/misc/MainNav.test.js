@@ -1,25 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import MainNav from './MainNav';
 
+configure({ adapter: new Adapter() });
+
 describe('<MainNav />', () => {
-  const component = shallow(<MainNav/>)
+  const wrapper = shallow(<MainNav/>)
 
   test('Should be unique nav tag', () => {
-    const wrapper = component.find('nav')
-    expect(wrapper.length).toBe(1)
+    const nav = wrapper.find('nav')
+    expect(nav.length).toBe(1)
   })
 
   test('Should have class navbar and navbar-dark', () => {
-    const wrapper = component.find('.navbar')
     expect(wrapper.hasClass('navbar navbar-dark')).toBeTruthy()
-  })
+  }) 
 
   test('Should contain the name of the store', () => {
-    const wrapper = component.find('h1')
     expect(wrapper.text()).toBe('Phone Catalogue')
   })
 
 });
 
-//console.log(component.debug())
+//console.log(wrapper.debug())

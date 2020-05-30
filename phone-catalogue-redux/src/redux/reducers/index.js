@@ -4,7 +4,7 @@ import {
   DATA_ERROR
 } from '../actions';
 
-const initialState = {
+export const initialState = {
   pending: false,
   data: [],
   error: null

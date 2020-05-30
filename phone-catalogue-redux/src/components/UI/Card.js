@@ -1,8 +1,8 @@
 import React from 'react';
 import PhoneDetail from '../PhoneDetail';
 
-
 const Card = ({
+  color,
   imageFileName,
   name,
   manufacturer,
@@ -10,7 +10,8 @@ const Card = ({
   price,
   description,
   processor,
-  ram  }) => {
+  ram  
+}) => {
 
     const nameReeplaceCharacters = name.replace(/[. ,:-]+/g, "-");
 
@@ -33,8 +34,12 @@ const Card = ({
                 <p className="card-text">{manufacturer}</p>
 
                 <div className="d-flex align-items-center justify-content-between flex-wrap">
-                  <div className="col-md-12 col-12"><span>{screen}</span></div>
-                  <div className="col-md-12 col-12"><span className="h5 font-weight-bold">{price} €</span></div>
+                  <div className="col-md-12 col-12">
+                    <span>{screen}</span>
+                  </div>
+                  <div className="col-md-12 col-12">
+                    <span className="h5 font-weight-bold price">{price} €</span>
+                  </div>
                 </div>
 
                 <button
@@ -56,6 +61,7 @@ const Card = ({
         description={description}
         processor={processor}
         ram={ram}
+        color={color}
       />
       </>
     )

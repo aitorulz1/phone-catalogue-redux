@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './UI/Card';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
 
 const PhoneList = (props) => {
   const phones = props.data
@@ -14,7 +14,7 @@ const PhoneList = (props) => {
         )}
       </div>
       ) : (
-        <div className="alert alert-dark" role="alert">
+        <div className="alertoooo alert-dark" role="alert">
           Sorry! No phones at the moment
         </div>
       )

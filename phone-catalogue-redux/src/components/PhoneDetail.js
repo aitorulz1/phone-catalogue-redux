@@ -1,6 +1,13 @@
 import React from 'react';
 
-const PhoneDetail = ({ modalId, imageFileName, name, description, processor, ram }) => {
+const PhoneDetail = ({
+  modalId,
+  imageFileName,
+  name,
+  description,
+  processor,
+  ram,
+  color }) => {
 
   return (
     <div className="modal fade phoneDetail_modal" id={modalId} tabIndex="-1" role="dialog" aria-hidden="true">
@@ -27,6 +34,7 @@ const PhoneDetail = ({ modalId, imageFileName, name, description, processor, ram
                 <p>{description}</p>
                 <h6>Processor: <span className="font-weight-light">{processor}</span></h6>
                 <h6>Ram: <span className="font-weight-light">{ram}</span></h6>
+                <h6>Color: <span className="font-weight-light">{color}</span></h6>
               </div>
             </div>
           </div>
