@@ -7,7 +7,7 @@ const PhoneList = (props) => {
   const phones = props.data
   
   return (
-    <div className="container-fluid mt-5 pt-5">
+    <div className="container-fluid mt-5 pt-5 PhoneList">
       {phones.length ? (
       <div className="row row-cols-1 row-cols-md-2">
         {phones.map((phone, index) => 
@@ -15,7 +15,7 @@ const PhoneList = (props) => {
         )}
       </div>
       ) : (
-        <div className="alertoooo alert-dark" role="alert">
+        <div className="alert alert-dark" role="alert">
           Sorry! No phones at the moment
         </div>
       )

@@ -2,7 +2,6 @@ import React from 'react';
 import App from './App';
 import { testStore, enzymeSetUp } from './Utils'
 import { shallow } from 'enzyme';
-import { initialState } from './redux/reducers';
 
 enzymeSetUp()
 
