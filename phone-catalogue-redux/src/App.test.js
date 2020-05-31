@@ -1,29 +1,22 @@
 import React from 'react';
 import App from './App';
+import { testStore, enzymeSetUp } from './Utils'
 import { shallow } from 'enzyme';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import { initialState } from './redux/reducers';
 
-// import { configure } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
-// configure({ adapter: new Adapter() });
- 
-  // const middlewares = [thunk];
-  // const mockStore = configureStore(middlewares);
+enzymeSetUp()
 
-
-  const testStore = (initialState) => {
-    const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
-    return createStoreWithMiddleware(, initialState);
-};
-
+const setUp = (initialState = {}) => {
+  const store = testStore(initialState)
+  const wrapper = shallow(<App store={store}/>).childAt(0).dive();
+  //console.log(wrapper.debug())
+  return wrapper
+}
 
 describe('<App />', () => {
-  test('Renders without crashing', () => {
+  let wrapper
 
-  })
-
-  describe('Have props', () => {
+  beforeEach(() => {
     const initialState = {
       pending: false,
       data: [
@@ -42,16 +35,41 @@ describe('<App />', () => {
       ],
       error: null
     }
+
+    wrapper = setUp(initialState)
   })
 
-  describe('Have NO props', () => {
+  describe('Have props', () => {
+    test('Renders without errors', () => {
+      const component = wrapper.find('.App')
+      expect(component.length).toBe(1)
+    })
 
+    test('Should have a MainNav component', () => {
+      const component = wrapper.find('MainNav')
+      expect(component.length).toBe(1)
+    })
+
+    test('Should have a BrowserRouter', () => {
+      const component = wrapper.find('BrowserRouter')
+      expect(component.length).toBe(1)
+    })
+
+    test('Should have a Switch', () => {
+      const component = wrapper.find('Switch')
+      expect(component.length).toBe(1)
+    })
+
+    test('Should have a Route width path /phones', () => {
+      const component = wrapper.find('Route')
+      expect(component.prop('path')).toBe('/phones')
+    })
+
+    test('Should have a MainFooter component', () => {
+      const component = wrapper.find('MainFooter')
+      expect(component.length).toBe(1)
+    })
   })
-
-
-  // test('Should receive s state', () => {
-  //   expect(wrapper.props().store.getState()).toBeTruthy()
-  // })
 });
 
 
