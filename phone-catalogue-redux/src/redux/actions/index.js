@@ -1,8 +1,10 @@
 import PhonesCatalogueService from "../../services/PhonesCatalogueService";
 
-export const REQUEST_DATA = 'REQUEST_DATA';
-export const DATA_SUCCESS = 'DATA_SUCCESS';
-export const DATA_ERROR = 'FETCH_DATA_ERROR';
+export const types = {
+  REQUEST_DATA: 'REQUEST_DATA',
+  DATA_SUCCESS: 'DATA_SUCCESS',
+  DATA_ERROR: 'FETCH_DATA_ERROR'
+};
 
 const requestData = () => {
   return {
