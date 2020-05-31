@@ -1,48 +1,50 @@
 import React from 'react';
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount } from 'enzyme';
 import PhonesList from './PhonesList';
+import { enzymeSetUp } from '../Utils';
+import PropTypes from 'prop-types'; 
+import checkPropTypes from 'check-prop-types';
 
-configure({ adapter: new Adapter() });
-const middlewares = [thunk]
-const mockStore = configureMockStore(middlewares)
+enzymeSetUp()
 
-function setUp(){
-  let wrapper, store;
-
-  const initialState = {
-    pending: false,
-    data: [
-      // {
-      //   modalId: 0,
-      //   imageFileName: "P10_Lite.jpg",
-      //   name: "P10 Lite",
-      //   description: 'This is very shirt description',
-      //   color: "white",
-      //   processor: "Kirin 658",
-      //   ram: 4
-      // }
-    ],
-    error: null
-  }
-
-  store = mockStore(initialState)
-  wrapper = shallow(<PhonesList store={store} />).dive()
-  return { wrapper }
-}
+// const wrapper = shallow(<PhonesList />)
+// wrapper.find('Memo(Foo)')
 
 describe('<PhoneList />', () => {
-  const { wrapper } = setUp()
- console.log(wrapper.debug())
+
+  describe('Checking PropTypes', () => {
+    test('Should not throw a warning', () => {
+      const expectedProps = {
+        data: [{
+          color: "white",
+          description: "Some description",
+          id: 3,
+          imageFileName: "P10_Lite.jpg",
+          manufacturer: "Huawei",
+          name: "P10 Lite",
+          price: 249,
+          processor: "Kirin 658",
+          ram: 4,
+          screen: "5,2 inch Full-HD"
+        }],
+        error: 'Some error message',
+        pending: false
+      }
+      
+      let propsError = checkPropTypes(
+        PhonesList.WrappedComponent.propTypes, expectedProps, 'props', PhonesList.name
+      )
+      expect(propsError).toBeUndefined()
+    })
+  })
+
 
   test('Should render self', () => {
-    expect(wrapper.find('alert')).toBeTruthy()
+    //expect(wrapper.find('alert')).toBeTruthy()
   })
 
   test('Should render an alert if empty or error', () => {
-    expect(wrapper.find('alert')).toBeTruthy()
+    //expect(wrapper.find('alert')).toBeTruthy()
   })
 
   test('Should render a list', () => {

@@ -1,37 +1,29 @@
-import thunk from 'redux-thunk'
+import mockAxios from 'axios'
 import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import {
+  REQUEST_DATA,
+  DATA_SUCCESS,
+  DATA_ERROR
+} from '../actions';
+
 import { fetchData } from '.'
 import fetchMock from 'fetch-mock'
+import PhonesCatalogueService from '../../services/PhonesCatalogueService';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
+const store = mockStore()
 
-describe('async actions', () => {
-  test('fake test', () => {
-    expect(true).toBeTruthy()
+describe('Async actions', () => {
+
+  afterEach(() => {
+    fetchMock.restore()
   })
-  // afterEach(() => {
-  //   fetchMock.restore()
-  // })
 
-  // test('creates DATA_SUCCESS when fetching todos has been done', () => {
-  //   fetchMock.getOnce('/todos', {
-  //     response: 200,
-  //     body: { data: ['do something'] },
-  //     headers: { 'content-type': 'application/json' }
-  //   })
-
-  //   const expectedActions = [
-  //     { type: 'REQUEST_DATA' },
-  //     { type: 'DATA_SUCCESS', body: { data: ['do something']  } }
-      
-  //   ]
-
-  //   const store = mockStore({ data: [] })
-
-  //   return store.dispatch(fetchData())
-  //   .then(() => {
-  //     expect(store.getActions()).toBe(expectedActions)
-  //   })
-  // })
+  test('Should create an action requestData', () => {
+    fetchMock.getOnce(PhonesCatalogueService, {
+      body: {}
+    })
+  })
 });

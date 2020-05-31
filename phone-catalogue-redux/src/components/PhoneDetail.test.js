@@ -1,9 +1,9 @@
 import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { shallow } from 'enzyme'
 import PhoneDetail from './PhoneDetail';
+import { enzymeSetUp } from '../Utils';
 
-configure({ adapter: new Adapter() });
+enzymeSetUp()
 
 describe('<PhoneDetail/>', () => {
   let wrapper;

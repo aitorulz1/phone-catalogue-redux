@@ -1,9 +1,9 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { enzymeSetUp } from '../../Utils';
+import { shallow } from 'enzyme';
 import Loading from './Loading';
 
-configure({ adapter: new Adapter() });
+enzymeSetUp()
 
 describe('<Loading />', () => {
   test('Should render an image', () => {

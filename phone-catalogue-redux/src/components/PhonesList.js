@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './UI/Card';
 import { connect } from 'react-redux'; 
+import PropTypes from 'prop-types'; 
 
 const PhoneList = (props) => {
   const phones = props.data
@@ -29,6 +30,24 @@ const mapStateToProps = state => {
     error: state.error 
   }
 }
+
+PhoneList.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    color: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number.isRequired,
+    imageFileName: PropTypes.string.isRequired,
+    manufacturer: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    processor: PropTypes.string,
+    ram: PropTypes.number,
+    screen: PropTypes.string
+  })),
+  error: PropTypes.string,
+  pending: PropTypes.bool
+}
+
 
 export default connect(
   mapStateToProps,

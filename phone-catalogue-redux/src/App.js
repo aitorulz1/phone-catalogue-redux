@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { fetchData } from './redux/actions';
 import Loading from './components/misc/Loading';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   
@@ -18,7 +19,7 @@ class App extends Component {
   }
 
   render(){
-    const { data, error, pending } = this.props;
+    const { error, pending } = this.props;
 
     if(pending) return <Loading />
 
@@ -48,6 +49,11 @@ class App extends Component {
     )
   }
   
+}
+
+App.propTypes = {
+  error: PropTypes.string,
+  pending: PropTypes.bool
 }
 
 const mapStateToProps = state => {

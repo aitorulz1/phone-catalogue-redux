@@ -47,4 +47,6 @@ const PhoneDetail = ({
   )
 }
 
+
+
 export default PhoneDetail;
