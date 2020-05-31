@@ -10,8 +10,8 @@ enzymeSetUp()
 // const wrapper = shallow(<PhonesList />)
 // wrapper.find('Memo(Foo)')
 
-describe('<PhoneList />', () => {
-
+describe('<PhonesList />', () => {
+  
   describe('Checking PropTypes', () => {
     test('Should not throw a warning', () => {
       const expectedProps = {
