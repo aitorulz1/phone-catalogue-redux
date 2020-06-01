@@ -1,7 +1,7 @@
 import moxios from 'moxios';
 import { testStore } from './../../Utils'
-import { fetchData } from '.';
-
+import { fetchData, types } from '.';
+import mockAxios from 'axios';
 
 describe('Async fecth actions', () => {
   beforeEach(function () {
@@ -17,45 +17,30 @@ describe('Async fecth actions', () => {
       {
         color: "white",
         description: "Some description",
-        id: 3,
-        imageFileName: "P10_Lite.jpg",
-        manufacturer: "Huawei",
-        name: "P10 Lite",
-        price: 249,
-        processor: "Kirin 658",
-        ram: 4,
-        screen: "5,2 inch Full-HD"
+        id: 3
       },
       {
         color: "white",
         description: "Some description",
-        id: 3,
-        imageFileName: "P10_Lite.jpg",
-        manufacturer: "Huawei",
-        name: "P10 Lite",
-        price: 249,
-        processor: "Kirin 658",
-        ram: 4,
-        screen: "5,2 inch Full-HD"
+        id: 3
       }
-    ]
+    ];
 
-    const store = testStore()
-
+    const store = testStore();
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.respondWith({
         status: 200,
         response: expectedState
-        //should fail
-        //response: []
       })
     })
 
-    return store.dispatch(fetchData())
-    .then(() => {
-      const newState = store.getState()
-      expect(newState.data).toBe(expectedState)
-    })
+    //return store.dispatch(fetchData())
+
+    const newState = () => async () => {
+      store.dispatch(fetchData())
+      const response = await store.getState()
+      expect(response.data).toBe(expectedState)
+    }
   })
 });
