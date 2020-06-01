@@ -35,8 +35,6 @@ describe('Async fecth actions', () => {
       })
     })
 
-    //return store.dispatch(fetchData())
-
     const newState = () => async () => {
       store.dispatch(fetchData())
       const response = await store.getState()
