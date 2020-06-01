@@ -24,10 +24,7 @@ The db only have a length of 7 items for testing, you can add as much as you lik
 
 It comes with the necessary configuration for the deployment in Heroku, you only need to configure your own database
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See the section about [deployment](https://devcenter.heroku.com/articles/git) for more information.
 
 ### `Cors`
 
